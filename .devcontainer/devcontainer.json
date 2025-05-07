@@ -52,7 +52,8 @@
                 "bradlc.vscode-tailwindcss",
                 "DEVSENSE.phptools-vscode",
                 "donjayamanne.githistory",
-                "RooVeterinaryInc.roo-cline"
+                "RooVeterinaryInc.roo-cline",
+                "laravel.vscode-laravel"
             ]
         }
     },
