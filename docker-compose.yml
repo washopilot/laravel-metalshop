@@ -1,0 +1,29 @@
+services:
+    php:
+        build:
+            context: .
+            target: php
+            dockerfile: docker/Dockerfile
+            args:
+                uid: ${WWWUSER}
+        environment:
+            - APACHE_RUN_USER=#${WWWUSER}
+            - APACHE_RUN_GROUP=#${WWWUSER}
+        ports:
+            - ${APP_PORT}:80
+            - 5173:5173
+        networks:
+            - internal
+        volumes:
+            - ./:/var/www/html:rw
+        restart: unless-stopped
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:80']
+            interval: 30s
+            timeout: 10s
+            retries: 3
+
+networks:
+    internal:
+        name: laravel-cq-net
+        driver: bridge
