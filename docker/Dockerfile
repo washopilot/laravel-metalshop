@@ -37,7 +37,9 @@ RUN a2enmod rewrite headers
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 COPY docker/php/laravel.ini /usr/local/etc/php/conf.d/laravel.ini
 
-RUN docker-php-ext-install \
+RUN pecl install apcu && \
+    docker-php-ext-enable apcu && \
+    docker-php-ext-install \
     bz2 \
     intl \
     iconv \
